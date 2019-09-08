@@ -1,0 +1,107 @@
+@startuml
+
+title Package Challenge Class Diagram
+
+class Packer {
+    {abstract} pack(String filePath)
+}
+
+class PackageManager{
+    +String inputFilePath
+    +Parser parser
+    +Solver solver
+
+    solve(List<Package> packages)
+}
+
+Interface Solver {
+    {abstract} List<Package> solve(Package package)
+}
+
+class KnapsackAlgorithmSolver
+KnapsackAlgorithmSolver <|-- Solver : implements
+
+'Begin: Parser factory method
+
+Interface Parser {
+    List<Package> parse(String filePath)
+}
+
+Enum ParserType {
+    TEXT
+    CSV
+    EXCEL
+}
+
+class ParserFactory {
+    {abstract} Parser create(ParserType type)
+}
+
+abstract class AbstractParser
+class ParserTextImpl
+class ParserCsvImpl
+class ParserExcelImpl
+
+AbstractParser <|-- Parser : implements
+ParserTextImpl <|-- AbstractParser : extends
+ParserCsvImpl <|-- AbstractParser : extends
+ParserExcelImpl <|-- AbstractParser : extends
+
+Packer <-- ParserFactory : uses
+ParserFactory <.. ParserType : uses
+ParserFactory <.. ParserTextImpl : creates
+ParserFactory <.. ParserCsvImpl : creates
+ParserFactory <.. ParserExcelImpl : creates
+
+'End: Parser factory method
+
+'Begin: Exporter factory method
+
+Interface Exporter {
+    export(List<Package> pickedPackages)
+}
+
+abstract class AbstractExporter
+class ExporterTextImpl
+class ExporterExcelImpl
+class ExporterPdfImpl
+
+class ExporterFactory
+
+'relationship
+
+AbstractExporter <|-- Exporter : implements
+ExporterTextImpl <|-- AbstractExporter : extends
+ExporterExcelImpl <|-- AbstractExporter : extends
+ExporterPdfImpl <|-- AbstractExporter : extends
+
+ExporterFactory <.. ExporterTextImpl: creates
+ExporterFactory <.. ExporterExcelImpl: creates
+ExporterFactory <.. ExporterPdfImpl: creates
+
+Packer <-- ExporterFactory : uses
+
+'End: Exporter factor method
+
+class Package {
+    +Double maxWeight
+    +List<Item> packages
+}
+
+class Item {
+    +Integer index
+    +Double weight
+    +Double cost
+}
+
+
+Packer <.. PackageManager
+Packer <.. Exporter
+
+PackageManager *-- Parser
+PackageManager *-- Solver
+
+
+Package o-- Item : " 1..*"
+
+@enduml
