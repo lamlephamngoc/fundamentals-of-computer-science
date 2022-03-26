@@ -32,7 +32,7 @@ public class ParserTextImpl extends AbstractParser {
     /**
      * Apply singleton eager initialization design pattern
      *
-     * @return
+     * @return Text parser
      */
     public static Parser getInstance() {
         return parser;
@@ -58,7 +58,7 @@ public class ParserTextImpl extends AbstractParser {
                     throw new InputInvalidFormatException(ERROR_MSG_PACKAGE_STRING_LINE_INFO_NULL_OR_EMPTY);
 
                 final String[] rawPackage = line.split(":");
-                final double maxWeight = Double.valueOf(rawPackage[0]);
+                final double maxWeight = Double.parseDouble(rawPackage[0]);
                 final List<Item> items = determinePackages(rawPackage[1]);
 
                 packages.add(

@@ -8,13 +8,14 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import com.goriant.BaseTest;
 import com.goriant.sharing.exception.APIException;
 import com.goriant.sharing.exception.InputInvalidFormatException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
- * Integration test main static method Packer.pack
+ * Integration test main static method Packer pack
  */
 public class PackerTest extends BaseTest {
 
@@ -30,22 +31,19 @@ public class PackerTest extends BaseTest {
 
     private String collisionFilePath;
 
-    @Before
+    @BeforeEach
     public void setup() {
         ClassLoader classLoader = getClass().getClassLoader();
-
-        File inputFile = new File(classLoader.getResource(PACKAGE_TXT).getFile());
+        File inputFile = new File(Objects.requireNonNull(classLoader.getResource(PACKAGE_TXT)).getFile());
         filePath = inputFile.getAbsolutePath();
-
-        File invalidInputFile = new File(classLoader.getResource(INVALID_PACKAGE_TXT).getFile());
+        File invalidInputFile = new File(Objects.requireNonNull(classLoader.getResource(INVALID_PACKAGE_TXT)).getFile());
         invalidInputFilePath = invalidInputFile.getAbsolutePath();
-
-        File collisionFile = new File(classLoader.getResource(COLLISION_PACKAGE_TXT).getFile());
+        File collisionFile = new File(Objects.requireNonNull(classLoader.getResource(COLLISION_PACKAGE_TXT)).getFile());
         collisionFilePath = collisionFile.getAbsolutePath();
     }
 
     @Test
-    public void pack_should_throw_exception_when_receiving_incorrect_input_file_path() throws Exception {
+    public void pack_should_throw_exception_when_receiving_incorrect_input_file_path() {
 
         // when
         Throwable thrown = catchThrowable(() -> Packer.pack("abc"));
@@ -56,7 +54,7 @@ public class PackerTest extends BaseTest {
     }
 
     @Test
-    public void pack_should_throw_exception_when_receiving_invalid_format_input_file() throws Exception {
+    public void pack_should_throw_exception_when_receiving_invalid_format_input_file() {
 
         // when
         Throwable thrown = catchThrowable(() -> Packer.pack(invalidInputFilePath));

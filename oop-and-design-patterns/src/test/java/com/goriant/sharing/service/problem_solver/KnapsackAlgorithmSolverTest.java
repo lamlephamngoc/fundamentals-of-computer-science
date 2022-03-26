@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.goriant.sharing.dto.Item;
 import com.goriant.sharing.dto.Package;
 import com.goriant.sharing.dto.PackageResult;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class KnapsackAlgorithmSolverTest {
 
     private Solver solver;
 
-    @Before
+    @BeforeEach
     public void setup() {
         solver = KnapsackAlgorithmSolver.getInstance();
     }
@@ -55,7 +55,7 @@ public class KnapsackAlgorithmSolverTest {
     }
 
     @Test
-    public void test_algorithm_data_set_02() throws Exception {
+    public void test_algorithm_data_set_02() {
         List<Item> items = new ArrayList<>();
 
         items.add(packageOf(3, 3.98, 16));
@@ -81,7 +81,7 @@ public class KnapsackAlgorithmSolverTest {
     }
 
     @Test
-    public void test_algorithm_data_set_03() throws Exception {
+    public void test_algorithm_data_set_03() {
         List<Item> items = new ArrayList<>();
 
         items.add(packageOf(1, 1, 10));

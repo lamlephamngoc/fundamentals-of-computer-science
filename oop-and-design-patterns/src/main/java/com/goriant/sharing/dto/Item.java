@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item implements Comparable {
+public class Item implements Comparable<Item> {
 
     private int index;
 
@@ -21,7 +21,7 @@ public class Item implements Comparable {
     private double cost;
 
     @Override
-    public int compareTo(Object other) {
-        return Double.compare(weight, ((Item) other).getWeight());
+    public int compareTo(Item other) {
+        return Double.compare(weight, other.getWeight());
     }
 }

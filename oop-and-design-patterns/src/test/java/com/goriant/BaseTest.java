@@ -1,15 +1,15 @@
 package com.goriant;
 
-import static org.mockito.MockitoAnnotations.initMocks;
+import org.junit.jupiter.api.BeforeEach;
 
-import org.junit.Before;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 /**
  * @author Lam Le - lamle@gmx.com
  */
 public abstract class BaseTest {
 
-    @Before
+    @BeforeEach
     public void init() {
         initMocks(this);
     }

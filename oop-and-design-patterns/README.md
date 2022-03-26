@@ -2,7 +2,7 @@
 
 Application accept an argument is a path of a file and then return list item's index with the total cost is maximum
 
-Application can extends with multiple Parser (Text, Csv, Excel...) and multiple Exporter (Text, PDF, Excel...)
+Application can extend with multiple Parser (Text, Csv, Excel...) and multiple Exporter (Text, PDF, Excel...)
 
 Project uses maven shade plugin for building an uber-jar for facility using
 

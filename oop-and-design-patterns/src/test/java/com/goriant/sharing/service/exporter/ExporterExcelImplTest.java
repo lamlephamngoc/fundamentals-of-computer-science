@@ -1,9 +1,10 @@
 package com.goriant.sharing.service.exporter;
 
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-import org.junit.Test;
 
 /**
  * @author Lam Le - lamle@gmx.com

@@ -23,7 +23,7 @@ public class ExporterTextImpl extends AbstractExporter {
     /**
      * Apply singleton eager initialization design pattern
      *
-     * @return
+     * @return Text exporter
      */
     public static Exporter getInstance() {
 

@@ -7,11 +7,8 @@ package com.goriant.sharing.service.parser;
 public class ParserFactory {
 
     public static Parser create(final ParserType type) {
-
         final Parser defaultParser = ParserTextImpl.getInstance();
-
         if (null == type) return defaultParser;
-
         switch (type) {
             case TEXT:
                 return defaultParser;
@@ -20,7 +17,7 @@ public class ParserFactory {
             case EXCEL:
                 return new ParserExcelImpl();
             default:
-                return defaultParser;
+                throw new UnsupportedOperationException();
         }
     }
 }

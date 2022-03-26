@@ -44,21 +44,14 @@ public final class Packer {
                 .parser(parser)
                 .solver(solver)
                 .build();
-
         final List<PackageResult> pickedPackages;
-
         try {
-
             pickedPackages = packageManager.solve();
-
         } catch (IOException ioe) {
             throw new APIException(ERROR_MSG_FILE_INPUT_DOES_NOT_EXISTS, ioe);
         } catch (Exception e) {
             throw new APIException(e);
         }
-
-        final String exported = (String) exporter.export(pickedPackages);
-        return exported;
-
+        return (String) exporter.export(pickedPackages);
     }
 }

@@ -6,7 +6,7 @@ package com.goriant.sharing.service.exporter;
  */
 public final class ExporterFactory {
 
-    public static final Exporter create(ExporterType type) {
+    public static Exporter create(ExporterType type) {
 
         final Exporter defaultExporter = ExporterTextImpl.getInstance();
 
@@ -20,7 +20,7 @@ public final class ExporterFactory {
             case EXCEL:
                 return new ExporterExcelImpl();
             default:
-                return defaultExporter;
+                throw new UnsupportedOperationException();
         }
     }
 }

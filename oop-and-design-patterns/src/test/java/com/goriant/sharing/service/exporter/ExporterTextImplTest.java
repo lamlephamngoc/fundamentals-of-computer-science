@@ -9,8 +9,8 @@ import com.goriant.BaseTest;
 import com.goriant.sharing.dto.Item;
 import com.goriant.sharing.dto.PackageResult;
 import com.goriant.sharing.exception.ExportException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +20,7 @@ public class ExporterTextImplTest extends BaseTest {
 
     private Exporter exporter;
 
-    @Before
+    @BeforeEach
     public void setup() {
         exporter = ExporterTextImpl.getInstance();
     }
@@ -46,7 +46,7 @@ public class ExporterTextImplTest extends BaseTest {
     }
 
     @Test
-    public void export_get_runtime_exception_should_throw_ExportException() throws Exception {
+    public void export_get_runtime_exception_should_throw_ExportException() {
 
         // given
         PackageResult packageResult = mock(PackageResult.class);

@@ -34,8 +34,8 @@ public class KnapsackAlgorithmSolver implements Solver {
      * this is a heart of application
      * we apply knapsack 01 solution for solving this problem
      *
-     * @param aPackage
-     * @return
+     * @param aPackage given package
+     * @return result of executed algorithm
      */
     public PackageResult solve(final Package aPackage) {
 
@@ -48,33 +48,29 @@ public class KnapsackAlgorithmSolver implements Solver {
 
         int i, weight;
         int n = items.size();
-        double K[][] = new double[n + 1][(int) maxWeight + 1];
+        double table[][] = new double[n + 1][(int) maxWeight + 1];
 
-        // Build table K[][] in bottom up manner
+        // Build table k[][] in bottom up manner
         for (i = 0; i <= n; i++) {
             for (weight = 0; weight <= maxWeight; weight++) {
                 if (i == 0 || weight == 0) {
-                    K[i][weight] = 0;
+                    table[i][weight] = 0;
                 } else if (items.get(i - 1).getWeight() <= weight) {
                     int remainingWeight = weight - ((int) items.get(i - 1).getWeight());
-                    double currentVal = items.get(i - 1).getCost() + K[i - 1][remainingWeight];
-                    double previousVal = K[i - 1][weight];
+                    double currentVal = items.get(i - 1).getCost() + table[i - 1][remainingWeight];
+                    double previousVal = table[i - 1][weight];
 
-                    if (currentVal >= previousVal) {
-                        K[i][weight] = currentVal;
-                    } else {
-                        K[i][weight] = previousVal;
-                    }
+                    table[i][weight] = Math.max(currentVal, previousVal);
                 } else {
-                    K[i][weight] = K[i - 1][weight];
+                    table[i][weight] = table[i - 1][weight];
                 }
             }
         }
 
-        final double maxCost = K[n][(int) maxWeight];
+        final double maxCost = table[n][(int) maxWeight];
 
         final List<Item> pickedItems = new ArrayList<>();
-        traceRouteBackward(K, maxWeight, items, pickedItems);
+        traceRouteBackward(table, maxWeight, items, pickedItems);
 
         return PackageResult.builder()
                 .maxCost(maxCost)

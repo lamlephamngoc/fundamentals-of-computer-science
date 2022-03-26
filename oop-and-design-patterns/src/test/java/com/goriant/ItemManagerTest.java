@@ -10,8 +10,8 @@ import com.goriant.sharing.dto.Package;
 import com.goriant.sharing.dto.PackageResult;
 import com.goriant.sharing.service.parser.Parser;
 import com.goriant.sharing.service.problem_solver.Solver;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.util.Collections;
@@ -30,7 +30,7 @@ public class ItemManagerTest extends BaseTest {
 
     private PackageManager packageManager;
 
-    @Before
+    @BeforeEach
     public void setup() {
         packageManager = PackageManager.builder()
                 .inputFilePath("")
