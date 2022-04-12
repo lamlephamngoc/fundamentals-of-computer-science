@@ -6,6 +6,7 @@ public class StackVsHeap {
         p.setName("ben");
         p.setName("lucas");
     }
+
     public static class Person {
         private String name;
 
